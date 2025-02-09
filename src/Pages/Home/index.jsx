@@ -1,7 +1,10 @@
 import { useRef } from "react"
-import { Title, Container, TopBackGround, Form, ContainerInputs, Input, Button, InputLabel } from "./styles"
-import UsersImage from '../../assets/users.png'
+import { useNavigate } from "react-router-dom"
+import { Title, Container, Form, ContainerInputs, Input, InputLabel } from "./styles"
 import api from "../../services/api"
+import Button from '../../Components/Button'
+import BackGroud from '../../Components/TopBackground'
+
 
 
 
@@ -10,6 +13,8 @@ function Home() {
   const inputName = useRef()
   const inputAge = useRef()
   const inputEmail = useRef()
+
+  const navigate = useNavigate()
 
 
   async function registerNewUser(){
@@ -24,9 +29,7 @@ function Home() {
 
   return (  
     <Container>
-      <TopBackGround>
-        <img src={UsersImage} alt="Imagem-usuarios"/>
-      </TopBackGround>          
+      <BackGroud />          
     
     
       <Form>
@@ -44,7 +47,7 @@ function Home() {
               
             <div>
               <InputLabel>
-                Nome<span> *</span>
+                Idade<span> *</span>
               </InputLabel>
               
               <Input type="number" placeholder="Idade do usuário" ref={inputAge}/>
@@ -58,11 +61,11 @@ function Home() {
             <Input type="email" placeholder="E-mail do usuário" ref={inputEmail}/>
           </div>
 
-        <Button type="button" onClick={registerNewUser}>Cadastrar Usuários</Button>
+        <Button type="button" onClick={registerNewUser} theme="primary">Cadastrar Usuários</Button>
         
       </Form>
     
-    
+      <Button type="button" onClick={() => navigate('lista-de-usuarios')}>Ver Lista de Usuários</Button>
     
     
     
